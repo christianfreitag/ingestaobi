@@ -20,6 +20,4 @@ services:
       dockerfile: dockerfiles/Dockerfile
     depends_on:
       - db
-    networks:
-      - app-network
     command: /bin/bash -c "sleep 15 && python main.py"
