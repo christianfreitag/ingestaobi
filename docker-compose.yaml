@@ -1,4 +1,4 @@
-version: '3.8'
+version: 3
 services:
   db:
     image: postgres
@@ -12,14 +12,9 @@ services:
     volumes:
       - ./sql:/docker-entrypoint-initdb.d
     restart: always
-    networks:
-      - app-network
   
   app:
     container_name: ingestao-app
-    volumes:
-      - ./data:/app/data
-      - ./ingestaoBI/app:/app
     build:
       context: .
       dockerfile: dockerfiles/Dockerfile
@@ -27,8 +22,4 @@ services:
       - db
     networks:
       - app-network
-    command: /bin/bash -c "sleep 10 && python main.py"
-
-networks:
-  app-network:
-    driver: bridge
+    command: /bin/bash -c "sleep 15 && python main.py"
